@@ -46,10 +46,14 @@ int main(int argc, char **argv) {
       return EXIT_FAILURE;
   }
 
-  const std::string jpg_filenameL = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
-    + "/imageData/StanfordMobileVisualSearch/Ace_0.png";
-  const std::string jpg_filenameR = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
-    + "/imageData/StanfordMobileVisualSearch/Ace_1.png";
+  // const std::string jpg_filenameL =
+  //     "/home/yajiang/Revopoint/data/indoor/000001/mono_left_58296.png";
+  // const std::string jpg_filenameR =
+  //     "/home/yajiang/Revopoint/data/indoor/000001/mono_right_58296.png";
+  const std::string jpg_filenameL =
+      "/home/yajiang/Revopoint/data/indoor/000001/left.png";
+  const std::string jpg_filenameR =
+      "/home/yajiang/Revopoint/data/indoor/000001/right.png";
 
   Image<unsigned char> imageL, imageR;
   ReadImage(jpg_filenameL.c_str(), &imageL);
@@ -120,7 +124,7 @@ int main(int argc, char **argv) {
 
   // Draw correspondences after Nearest Neighbor ratio filter
   {
-    const bool bVertical = true;
+    const bool bVertical = false;
     Matches2SVG
     (
       jpg_filenameL,

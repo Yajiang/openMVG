@@ -78,7 +78,7 @@ void UndistortImageResized(
   Image & image_ud,
   typename Image::Tpixel fillcolor = typename Image::Tpixel( 0 ),
   const uint32_t max_ud_width = 10000,
-  const uint32_t max_ud_height = 10000)
+  const uint32_t max_ud_height = 10000,const uint32_t margin_x = 0, const uint32_t margin_y = 0 )
 {
   if ( !cam->have_disto() ) // no distortion, perform a direct copy
   {
@@ -92,9 +92,9 @@ void UndistortImageResized(
     int max_x = std::numeric_limits<int>::lowest();
     int max_y = std::numeric_limits<int>::lowest();
 
-    for (int id_row = 0; id_row < imageIn.Height(); ++id_row )
+    for (int id_row = margin_y  ; id_row < imageIn.Height() - margin_y; ++id_row )
     {
-      for (int id_col = 0; id_col < imageIn.Width(); ++id_col )
+      for (int id_col = margin_x; id_col < imageIn.Width() - margin_x; ++id_col )
       {
         const Vec2 dist_pix( id_col , id_row );
         const Vec2 undist_pix = cam->get_ud_pixel( dist_pix );

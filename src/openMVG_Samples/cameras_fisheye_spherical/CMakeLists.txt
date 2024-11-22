@@ -1,0 +1,9 @@
+
+# add_executable(openMVG_sample_cameras_fisheyeSpherical fisheyeSpherical.cpp)
+add_executable(openMVG_sample_cameras_fisheyeSpherical image_fisheye_to_spherical.cpp)
+target_link_libraries(openMVG_sample_cameras_fisheyeSpherical
+  openMVG_geometry
+  openMVG_image
+  openMVG_multiview
+  ${STLPLUS_LIBRARY})
+set_property(TARGET openMVG_sample_cameras_fisheyeSpherical PROPERTY FOLDER OpenMVG/Samples)

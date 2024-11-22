@@ -1,0 +1,7 @@
+{
+    "editor.formatOnSave": false,
+    "files.autoSave": "afterDelay",
+    "cmake.sourceDirectory": "/home/yajiang/Revopoint/projects/openMVG/src/dependencies/cereal/sandbox/sandbox_shared_lib", // or your preferred auto-save option
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "C_Cpp.autocomplete": "disabled",
+}

@@ -30,10 +30,10 @@ set(CMAKE_FIND_FRAMEWORK LAST)
 option(OpenMVG_BUILD_SHARED "Build OpenMVG shared libs" OFF)
 option(OpenMVG_BUILD_TESTS "Build OpenMVG tests" OFF)
 option(OpenMVG_BUILD_DOC "Build OpenMVG documentation" ON)
-option(OpenMVG_BUILD_EXAMPLES "Build OpenMVG samples applications." ON)
+option(OpenMVG_BUILD_EXAMPLES "Build OpenMVG samples applications." OFF)
 option(OpenMVG_BUILD_OPENGL_EXAMPLES "Build OpenMVG openGL examples" OFF)
-option(OpenMVG_BUILD_SOFTWARES "Build OpenMVG softwares" ON)
-option(OpenMVG_BUILD_GUI_SOFTWARES "Build OpenMVG GUI softwares (QT5)" ON)
+option(OpenMVG_BUILD_SOFTWARES "Build OpenMVG softwares" OFF)
+option(OpenMVG_BUILD_GUI_SOFTWARES "Build OpenMVG GUI softwares (QT5)" OFF)
 option(OpenMVG_BUILD_COVERAGE "Enable code coverage generation (gcc only)" OFF)
 option(OpenMVG_USE_OPENMP "Enable OpenMP parallelization" ON)
 # ==============================================================================
@@ -281,7 +281,7 @@ endif()
 # - external if EIGEN_INCLUDE_DIR_HINTS is defined
 # - internal if Eigen not found
 # ==============================================================================
-find_package(Eigen3 QUIET)
+# find_package(Eigen3 QUIET)
 if (NOT Eigen3_FOUND)
   set(EIGEN_INCLUDE_DIR_HINTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/eigen)
   set(OpenMVG_USE_INTERNAL_EIGEN ON)
@@ -289,7 +289,7 @@ if (NOT Eigen3_FOUND)
 else()
   set(EIGEN_INCLUDE_DIRS ${EIGEN3_INCLUDE_DIR})
 endif()
-add_definitions(-DEIGEN_MPL2_ONLY)
+# add_definitions(-DEIGEN_MPL2_ONLY)
 
 # ==============================================================================
 # Ceres
@@ -447,9 +447,10 @@ add_subdirectory(testing)
 add_subdirectory(openMVG)
 
 # openMVG tutorial examples
-if (OpenMVG_BUILD_EXAMPLES)
-  add_subdirectory(openMVG_Samples)
-endif (OpenMVG_BUILD_EXAMPLES)
+add_subdirectory(openMVG_Samples)
+# if (OpenMVG_BUILD_EXAMPLES)
+#   add_subdirectory(openMVG_Samples)
+# endif (OpenMVG_BUILD_EXAMPLES)
 
 # Complete software(s) build on openMVG libraries
 if (OpenMVG_BUILD_SOFTWARES)

@@ -1,0 +1,131 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "CMake: Configure RelWithDebInfo",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "./src", // Source directory
+                "-B",
+                "build/RelWithDebInfo", // Build directory
+                "-G",
+                "Unix Makefiles", // Generator (change to "Unix Makefiles" or "MSBuild" as needed)
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Configure the CMake project"
+        },
+        {
+            "label": "CMake: Configure Release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "./src", // Source directory
+                "-B",
+                "build/Release", // Build directory
+                "-G",
+                "Unix Makefiles", // Generator (change to "Unix Makefiles" or "MSBuild" as needed)
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-DCMAKE_BUILD_TYPE=Release"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Configure the CMake project"
+        },
+        {
+            "label": "CMake: Configure Debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "./src", // Source directory
+                "-B",
+                "build/Debug", // Build directory
+                "-G",
+                "Unix Makefiles", // Generator (change to "Unix Makefiles" or "MSBuild" as needed)
+                "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+                "-DCMAKE_BUILD_TYPE=Debug"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Configure the CMake project"
+        },
+        {
+            "label": "CMake: Build RelWithDebInfo",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build/RelWithDebInfo", // Build directory
+                "-j8",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Build the CMake project"
+        },
+        {
+            "label": "CMake: Build Release",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build/Release", // Build directory
+                "-j8",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Build the CMake project"
+        },
+        {
+            "label": "CMake: Build Debug",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "build/Debug", // Build directory
+                "-j8",
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "dependsOn": "CMake: Configure Debug",
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "detail": "Build the CMake project"
+        },
+    ]
+}

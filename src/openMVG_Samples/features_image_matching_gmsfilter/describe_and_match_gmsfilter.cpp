@@ -52,10 +52,15 @@ int main(int argc, char **argv) {
       return EXIT_FAILURE;
   }
 
-  const std::string jpg_filenameL = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
-    + "/imageData/StanfordMobileVisualSearch/Ace_0.png";
-  const std::string jpg_filenameR = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
-    + "/imageData/StanfordMobileVisualSearch/Ace_1.png";
+  // const std::string jpg_filenameL = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
+  //   + "/imageData/StanfordMobileVisualSearch/Ace_0.png";
+  // const std::string jpg_filenameR = stlplus::folder_up(std::string(THIS_SOURCE_DIR))
+  //   + "/imageData/StanfordMobileVisualSearch/Ace_1.png";
+
+  const std::string jpg_filenameL =
+      "/home/yajiang/Revopoint/data/indoor/000001/left.png";
+  const std::string jpg_filenameR =
+      "/home/yajiang/Revopoint/data/indoor/000001/right.png";
 
   Image<unsigned char> imageL, imageR;
   ReadImage(jpg_filenameL.c_str(), &imageL);
@@ -104,6 +109,7 @@ int main(int argc, char **argv) {
 
   {
     //- Draw features on the images (side by side)
+    const bool bVertical = false;
     Features2SVG
     (
       jpg_filenameL,
@@ -112,7 +118,8 @@ int main(int argc, char **argv) {
       jpg_filenameR,
       {imageR.Width(), imageR.Height()},
       regions_perImage.at(1)->GetRegionsPositions(),
-      "01_features.svg"
+      "01_features.svg",
+      bVertical
     );
   }
 
@@ -144,7 +151,7 @@ int main(int argc, char **argv) {
   }
   // Draw the putative photometric correspondences
   {
-    const bool bVertical = true;
+    const bool bVertical = false;
     Matches2SVG
     (
       jpg_filenameL,
@@ -205,7 +212,7 @@ int main(int argc, char **argv) {
     }
     // Draw the correspondences kept by the GMSFilter
     {
-      const bool bVertical = true;
+      const bool bVertical = false;
       Matches2SVG
       (
         jpg_filenameL,
